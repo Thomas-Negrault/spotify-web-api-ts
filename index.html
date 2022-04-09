@@ -1,225 +1,59 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>spotify-web-api-ts</title>
-	<meta name="description" content="Documentation for spotify-web-api-ts">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">spotify-web-api-ts</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>spotify-web-api-ts</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<p align="center">
-					<a href="https://github.com/adamgrieger/spotify-web-api-ts">
-						<img src="assets/logo.svg" height="100">
-					</a>
-					<h3 align="center">spotify-web-api-ts</h3>
-					<p align="center">
-						An isomorphic TypeScript wrapper for Spotify's Web API
-						<br />
-						<a href="https://adamgrieger.github.io/spotify-web-api-ts/"><strong>View the docs »</strong></a>
-						<br />
-						<p align="center">
-							<img alt="npm" src="https://badgen.net/npm/v/spotify-web-api-ts"/>
-							<img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/spotify-web-api-ts">
-							<img alt="license" src="https://badgen.net/github/license/adamgrieger/spotify-web-api-ts">
-						</p>
-						<p align="center">
-							<img alt="Master Workflow" src="https://github.com/adamgrieger/spotify-web-api-ts/workflows/Master%20Workflow/badge.svg"/>
-							<img alt="codecov" src="https://codecov.io/gh/adamgrieger/spotify-web-api-ts/branch/master/graph/badge.svg"/>
-							<img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
-						</p>
-					</p>
-				</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
-				<a href="#yarn" id="yarn" style="color: inherit; text-decoration: none;">
-					<h3>yarn</h3>
-				</a>
-				<pre><code class="language-sh">yarn add spotify-web-api-ts</code></pre>
-				<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
-					<h3>npm</h3>
-				</a>
-				<pre><code class="language-sh">npm install spotify-web-api-ts</code></pre>
-				<a href="#basic-example" id="basic-example" style="color: inherit; text-decoration: none;">
-					<h2>Basic Example</h2>
-				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { SpotifyWebApi } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;spotify-web-api-ts&#x27;</span>;
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>spotify-web-api-ts</title><meta name="description" content="Documentation for spotify-web-api-ts"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">spotify-web-api-ts</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>spotify-web-api-ts</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center">
+  <a href="https://github.com/thomas-Negrault/spotify-web-api-ts">
+    <img src="assets/logo.svg" height="100">
+  </a>
 
-<span class="hljs-keyword">const</span> spotify = <span class="hljs-keyword">new</span> SpotifyWebApi({ <span class="hljs-attr">accessToken</span>: <span class="hljs-string">&#x27;&lt;YOUR_ACCESS_TOKEN_HERE&gt;&#x27;</span> });
+  <h3 align="center">spotify-web-api-ts</h3>
 
-<span class="hljs-keyword">const</span> { artists } = <span class="hljs-keyword">await</span> spotify.albums.getAlbum(<span class="hljs-string">&#x27;1uzfGk9vxMXfaZ2avqwxod&#x27;</span>);
+  <p align="center">
+    An isomorphic TypeScript wrapper for Spotify's Web API
+    <br />
+    <a href="https://adamgrieger.github.io/spotify-web-api-ts/"><strong>View the docs »</strong></a>
+    <br />
+    <p align="center">
+      <img alt="npm" src="https://badgen.net/npm/v/spotify-web-api-ts"/>
+      <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/spotify-web-api-ts">
+      <img alt="license" src="https://badgen.net/github/license/thomas-Negrault/spotify-web-api-ts">
+    </p>
+    <p align="center">
+      <img alt="Main Workflow" src="https://github.com/thomas-Negrault/spotify-web-api-ts/workflows/Master%20Workflow/badge.svg"/>
+      <img alt="codecov" src="https://codecov.io/gh/thomas-Negrault/spotify-web-api-ts/branch/main/graph/badge.svg"/>
+      <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+    </p>
+  </p>
+</p>
 
-<span class="hljs-built_in">console</span>.log(artists.map(<span class="hljs-function"><span class="hljs-params">artist</span> =&gt;</span> artist.name));
-<span class="hljs-comment">// Array [ &quot;Against All Logic&quot; ]</span></code></pre>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_albumsapi_.html">&quot;apis/<wbr>Albums<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_artistsapi_.html">&quot;apis/<wbr>Artists<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_browseapi_.html">&quot;apis/<wbr>Browse<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_episodesapi_.html">&quot;apis/<wbr>Episodes<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_followapi_.html">&quot;apis/<wbr>Follow<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_libraryapi_.html">&quot;apis/<wbr>Library<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_personalizationapi_.html">&quot;apis/<wbr>Personalization<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_playerapi_.html">&quot;apis/<wbr>Player<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_playlistsapi_.html">&quot;apis/<wbr>Playlists<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_searchapi_.html">&quot;apis/<wbr>Search<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_showsapi_.html">&quot;apis/<wbr>Shows<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_tracksapi_.html">&quot;apis/<wbr>Tracks<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_apis_usersapi_.html">&quot;apis/<wbr>Users<wbr>Api&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_constants_.html">&quot;constants&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_helpers_http_.html">&quot;helpers/<wbr>Http&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_helpers_encodetobase64_.html">&quot;helpers/encode<wbr>ToBase64&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_helpers_getauthorizationurl_.html">&quot;helpers/get<wbr>Authorization<wbr>Url&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_helpers_searchhelper_.html">&quot;helpers/search<wbr>Helper&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_helpers_spotifyaxios_.html">&quot;helpers/spotify<wbr>Axios&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_types_spotifyauthorization_.html">&quot;types/<wbr>Spotify<wbr>Authorization&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_types_spotifyobjects_.html">&quot;types/<wbr>Spotify<wbr>Objects&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_types_spotifyoptions_.html">&quot;types/<wbr>Spotify<wbr>Options&quot;</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-external">
-						<a href="modules/_types_spotifyresponses_.html">&quot;types/<wbr>Spotify<wbr>Responses&quot;</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+
+<a href="#fork-of-adamgriegerspotify-web-api-ts" id="fork-of-adamgriegerspotify-web-api-ts" style="color: inherit; text-decoration: none;">
+  <h3>Fork of <a href="https://github.com/adamgrieger/spotify-web-api-ts">adamgrieger/spotify-web-api-ts</a></h3>
+</a>
+
+<a href="#additions" id="additions" style="color: inherit; text-decoration: none;">
+  <h1>Additions</h1>
+</a>
+<ul>
+<li>feat(spotifyaxios.ts): add spotify error message to axios error: <a href="https://github.com/thomas-Negrault/spotify-web-api-ts/pull/39">Issue in the initial repo</a></li>
+</ul>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+
+<a href="#yarn" id="yarn" style="color: inherit; text-decoration: none;">
+  <h3>yarn</h3>
+</a>
+<pre><code class="language-sh"><span class="hl-0">yarn add spotify-web-api-ts</span>
+</code></pre>
+
+<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
+  <h3>npm</h3>
+</a>
+<pre><code class="language-sh"><span class="hl-0">npm install spotify-web-api-ts</span>
+</code></pre>
+
+<a href="#basic-example" id="basic-example" style="color: inherit; text-decoration: none;">
+  <h2>Basic Example</h2>
+</a>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">SpotifyWebApi</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;spotify-web-api-ts&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">spotify</span><span class="hl-0"> = </span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-6">SpotifyWebApi</span><span class="hl-0">({ </span><span class="hl-2">accessToken:</span><span class="hl-0"> </span><span class="hl-3">&#39;&lt;YOUR_ACCESS_TOKEN_HERE&gt;&#39;</span><span class="hl-0"> });</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> { </span><span class="hl-5">artists</span><span class="hl-0"> } = </span><span class="hl-1">await</span><span class="hl-0"> </span><span class="hl-2">spotify</span><span class="hl-0">.</span><span class="hl-2">albums</span><span class="hl-0">.</span><span class="hl-6">getAlbum</span><span class="hl-0">(</span><span class="hl-3">&#39;1uzfGk9vxMXfaZ2avqwxod&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-2">console</span><span class="hl-0">.</span><span class="hl-6">log</span><span class="hl-0">(</span><span class="hl-2">artists</span><span class="hl-0">.</span><span class="hl-6">map</span><span class="hl-0">(</span><span class="hl-2">artist</span><span class="hl-0"> </span><span class="hl-4">=&gt;</span><span class="hl-0"> </span><span class="hl-2">artist</span><span class="hl-0">.</span><span class="hl-2">name</span><span class="hl-0">));</span><br/><span class="hl-7">// Array [ &quot;Against All Logic&quot; ]</span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/SpotifyWebApi.html" class="tsd-kind-icon">Spotify<wbr/>Web<wbr/>Api</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
