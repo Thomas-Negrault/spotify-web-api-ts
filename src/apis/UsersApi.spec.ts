@@ -17,7 +17,7 @@ beforeEach(() => {
   jest.resetAllMocks();
 });
 
-describe(UsersApi.name, () => {
+describe('UsersApi', () => {
   describe('getMe', () => {
     beforeEach(() => {
       HttpMock.prototype.get.mockResolvedValue(privateUserFixture);

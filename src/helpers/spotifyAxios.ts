@@ -25,7 +25,7 @@ export async function spotifyAxios<T>(
     });
 
     return response.data as T;
-  } catch (error) {
+  } catch (error: any) {
     const err = error as AxiosError;
     if (error?.response?.data?.error?.message) {
       throw new Error(`${err.message}: ${error.response.data.error.message}`);

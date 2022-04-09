@@ -1,11 +1,14 @@
 {
-  "name": "spotify-web-api-ts",
+  "name": "@thomasngrlt/spotify-web-api-ts",
   "version": "1.0.0",
   "description": "An isomorphic TypeScript wrapper for Spotify's Web API",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types",
-  "repository": "https://github.com/adamgrieger/spotify-web-api-ts.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomas-Negrault/spotify-web-api-ts.git"
+  },
   "author": "Adam Grieger",
   "license": "MIT",
   "files": [
@@ -16,12 +19,12 @@
   ],
   "scripts": {
     "build": "web-scripts build --project tsconfig.build.json",
-    "commit": "web-scripts commit",
+    "test": "web-scripts test",
     "format": "web-scripts format",
     "lint": "web-scripts lint",
-    "prepare": "web-scripts audit",
+    "commit": "web-scripts commit",
     "release": "web-scripts release",
-    "test": "web-scripts test",
+    "prepare": "husky install && web-scripts audit",
     "generate-docs": "typedoc --out docs src/index.ts"
   },
   "husky": {
@@ -31,13 +34,30 @@
     }
   },
   "devDependencies": {
-    "@spotify/web-scripts": "^8.0.2",
-    "@types/qs": "^6.9.4",
-    "husky": "^4.2.5",
-    "typedoc": "^0.18.0"
+    "@spotify/web-scripts": "^13.0.0",
+    "@types/qs": "^6.9.7",
+    "husky": "^7.0.4",
+    "typedoc": "^0.22.14"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "qs": "^6.9.4"
+    "axios": "^0.26.1",
+    "qs": "^6.10.3"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/thomas-Negrault/spotify-web-api-ts/issues"
+  },
+  "homepage": "https://github.com/thomas-Negrault/spotify-web-api-ts#readme",
+  "keywords": [
+    "spotify",
+    "spotify api",
+    "api"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }

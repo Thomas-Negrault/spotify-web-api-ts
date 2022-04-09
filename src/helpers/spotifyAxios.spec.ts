@@ -4,7 +4,7 @@ import { paramsSerializer, spotifyAxios } from './spotifyAxios';
 
 jest.mock('axios');
 
-const axiosMock = (axios as unknown) as jest.Mock;
+const axiosMock = axios as unknown as jest.Mock;
 
 describe('spotifyAxios', () => {
   beforeEach(() => {
