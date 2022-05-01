@@ -247,6 +247,33 @@ describe('spotifyAxios', () => {
       },
     );
   });
+
+  it('should wait and retry after being rate limited', async () => {
+    axiosMock.isAxiosError.mockReturnValue(true);
+
+    axiosMock.mockRejectedValueOnce({
+      response: {
+        status: 429,
+        headers: { 'retry-after': '1' },
+      },
+    });
+
+    axiosMock.mockResolvedValueOnce({
+      data: { id: 123 },
+      status: 200,
+      statusText: 'OK',
+      config: {},
+      headers: {},
+    });
+
+    jest.spyOn(global, 'setTimeout');
+
+    const data = await spotifyAxios('foo', 'GET', 'token', {});
+    expect(axiosMock).toHaveBeenCalledTimes(2);
+    expect(data).toMatchObject({ id: 123 });
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+  });
 });
 
 describe('paramsSerializer', () => {

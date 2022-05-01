@@ -27,8 +27,9 @@
 
 # Additions
 
+- feat(spotifyaxios.ts): wait and retry after rate limiting
 - feat(spotifyaxios.ts): cache GET requests response data
-- feat(spotifyaxios.ts): add spotify error message to axios error: [Issue in the initial repo](https://github.com/thomas-Negrault/spotify-web-api-ts/pull/39)
+- feat(spotifyaxios.ts): add spotify error message to axios error: [Issue in the initial repo](https://github.com/adamgrieger/spotify-web-api-ts/pull/39)
 
 ## Installation
 
