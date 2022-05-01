@@ -27,6 +27,7 @@
 
 # Additions
 
+- feat(spotifyaxios.ts): cache GET requests response data
 - feat(spotifyaxios.ts): add spotify error message to axios error: [Issue in the initial repo](https://github.com/thomas-Negrault/spotify-web-api-ts/pull/39)
 
 ## Installation
@@ -54,4 +55,28 @@ const { artists } = await spotify.albums.getAlbum('1uzfGk9vxMXfaZ2avqwxod');
 
 console.log(artists.map(artist => artist.name));
 // Array [ "Against All Logic" ]
+```
+
+## Example using Redis Cache
+
+```typescript
+import { SpotifyWebApi } from 'spotify-web-api-ts';
+import { createClient } from 'redis';
+
+const client = createClient();
+await client.connect();
+
+const spotify = new SpotifyWebApi({
+  accessToken: '<YOUR_ACCESS_TOKEN_HERE>',
+  getCache: (key: string) =>
+    client.get(key).then(data => (data ? JSON.parse(data) : null)),
+  setCache: (key: string, expiration, value) =>
+    redisClient.set(key, JSON.stringify(value), { EX: expiration }).then(),
+});
+
+const album1 = await spotify.albums.getAlbum('1uzfGk9vxMXfaZ2avqwxod');
+// cache-control header is "public, max-age=73485"
+
+const album2 = await spotify.albums.getAlbum('1uzfGk9vxMXfaZ2avqwxod');
+// No additional api calls was made
 ```

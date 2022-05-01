@@ -25,12 +25,15 @@ import {
   GetRefreshedAccessTokenResponse,
   GetTemporaryAppTokensResponse,
 } from './types/SpotifyAuthorization';
+import { Cache } from './helpers/Cache';
 
 type SpotifyWebApiOptions = {
   accessToken?: string;
   clientId?: string;
   clientSecret?: string;
   redirectUri?: string;
+  getCache?: (key: string) => Promise<any>;
+  setCache?: (key: string, expiration: number, value: any) => Promise<void>;
 };
 
 export class SpotifyWebApi {
@@ -39,6 +42,7 @@ export class SpotifyWebApi {
   private redirectUri: string;
 
   private http: Http;
+  private cache?: Cache;
 
   public albums: AlbumsApi;
   public artists: ArtistsApi;
@@ -59,7 +63,12 @@ export class SpotifyWebApi {
     this.clientSecret = options?.clientSecret ?? '';
     this.redirectUri = options?.redirectUri ?? '';
 
-    this.http = new Http(options?.accessToken ?? '');
+    this.cache =
+      options?.setCache && options?.getCache
+        ? new Cache(options.getCache, options.setCache)
+        : undefined;
+
+    this.http = new Http(options?.accessToken ?? '', this.cache);
 
     this.albums = new AlbumsApi(this.http);
     this.artists = new ArtistsApi(this.http);

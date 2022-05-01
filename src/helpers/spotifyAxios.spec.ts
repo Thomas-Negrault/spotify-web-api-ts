@@ -1,18 +1,42 @@
-import axios from 'axios';
+import axios, { Method } from 'axios';
 import { BASE_API_URL } from '../constants';
 import { paramsSerializer, spotifyAxios } from './spotifyAxios';
+import { Cache } from './Cache';
 
 jest.mock('axios');
 
-const axiosMock = axios as unknown as jest.Mock;
+const axiosMock = jest.mocked(axios, true);
+
+let cacheData: { [key: string]: any } = {};
+
+const cache = new Cache(
+  (key: string) => {
+    return Promise.resolve(key in cacheData ? cacheData[key] : null);
+  },
+  (key: string, expiration: number, value: any) => {
+    cacheData[key] = {
+      ...value,
+      fromCache: true,
+      expiration: expiration,
+    };
+    return Promise.resolve();
+  },
+);
 
 describe('spotifyAxios', () => {
   beforeEach(() => {
     jest.resetAllMocks();
+    cacheData = {};
   });
 
   it("should successfully call Spotify's Web API with the default content type", async () => {
-    axiosMock.mockResolvedValue({ data: 'foo' });
+    axiosMock.mockResolvedValue({
+      data: 'foo',
+      status: 200,
+      statusText: 'OK',
+      config: {},
+      headers: {},
+    });
     await spotifyAxios('foo', 'GET', 'token', {
       params: {
         bar: 'baz',
@@ -34,7 +58,13 @@ describe('spotifyAxios', () => {
   });
 
   it("should successfully call Spotify's Web API with a custom content type", async () => {
-    axiosMock.mockResolvedValue({ data: 'foo' });
+    axiosMock.mockResolvedValue({
+      data: 'foo',
+      status: 200,
+      statusText: 'OK',
+      config: {},
+      headers: {},
+    });
     await spotifyAxios('foo', 'GET', 'token', {
       contentType: 'image/jpeg',
       data: 'bar',
@@ -52,13 +82,19 @@ describe('spotifyAxios', () => {
     });
   });
 
-  it('should handle errors', async () => {
-    const testError = { message: 'foo' };
+  it('should re-throw non axios errors', async () => {
+    const testError = new Error('foo');
+    axiosMock.isAxiosError.mockReturnValue(false);
     axiosMock.mockRejectedValue(testError);
-    await expect(spotifyAxios('bar', 'GET', 'token')).rejects.toThrow('foo');
+
+    await expect(spotifyAxios('bar', 'GET', 'token')).rejects.toThrow(
+      new Error('foo'),
+    );
   });
 
-  it('should handle errors and the spotify error message', async () => {
+  it('should handle axios errors and the spotify error message', async () => {
+    axiosMock.isAxiosError.mockReturnValue(true);
+
     const testError = {
       message: 'foo',
       response: {
@@ -70,9 +106,145 @@ describe('spotifyAxios', () => {
         },
       },
     };
+
     axiosMock.mockRejectedValue(testError);
     await expect(spotifyAxios('bar', 'GET', 'token')).rejects.toThrow(
       'foo: Error message from Spotify',
+    );
+  });
+
+  describe('cache', () => {
+    it("should successfully cache Spotify's Web GET API calls with a public cache control", async () => {
+      axiosMock.mockResolvedValue({
+        data: { id: 123 },
+        status: 200,
+        statusText: 'OK',
+        config: {},
+        headers: {
+          'cache-control': 'public, max-age=600',
+        },
+      });
+      const freshResult = await spotifyAxios('/foo', 'GET', 'token', {}, cache);
+      expect(axiosMock).toBeCalledTimes(1);
+      expect(axiosMock).toBeCalledWith({
+        baseURL: BASE_API_URL,
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+        },
+        paramsSerializer,
+        url: '/foo',
+        method: 'GET',
+      });
+      expect(cacheData).toMatchObject({
+        '/foo': { id: 123, fromCache: true, expiration: 600 },
+      });
+      const cachedResult = await spotifyAxios(
+        '/foo',
+        'GET',
+        'token',
+        {},
+        cache,
+      );
+      expect(axiosMock).toBeCalledTimes(1);
+
+      expect(freshResult).toMatchObject({ id: 123 });
+      expect(cachedResult).toMatchObject({
+        id: 123,
+        fromCache: true,
+        expiration: 600,
+      });
+    });
+
+    it("should not cache Spotify's Web API GET calls with a private cache control", async () => {
+      axiosMock.mockResolvedValue({
+        data: { id: 123 },
+        status: 200,
+        statusText: 'OK',
+        config: {},
+        headers: {
+          'cache-control': 'private, max-age=0',
+        },
+      });
+      const freshResult = await spotifyAxios('foo', 'GET', 'token', {}, cache);
+      expect(axiosMock).toBeCalledTimes(1);
+      expect(axiosMock).toBeCalledWith({
+        baseURL: BASE_API_URL,
+        headers: {
+          Authorization: 'Bearer token',
+          'Content-Type': 'application/json',
+        },
+        paramsSerializer,
+        url: 'foo',
+        method: 'GET',
+      });
+      expect(cacheData).toMatchObject({});
+      const secondFreshResult: any = await spotifyAxios(
+        'foo',
+        'GET',
+        'token',
+        {},
+        cache,
+      );
+      expect(axiosMock).toBeCalledTimes(2);
+      expect(cacheData).toMatchObject({});
+      expect(freshResult).toMatchObject({
+        id: 123,
+      });
+      expect(secondFreshResult).toMatchObject({
+        id: 123,
+      });
+      expect(secondFreshResult.fromCache).toBeUndefined();
+    });
+
+    test.each(['DELETE', 'POST', 'PUT'] as Method[])(
+      "should not cache Spotify's Web API %s calls with a public cache control",
+      async (method: Method) => {
+        axiosMock.mockResolvedValue({
+          data: { id: 123 },
+          status: 200,
+          statusText: 'OK',
+          config: {},
+          headers: {
+            'cache-control': 'private, max-age=0',
+          },
+        });
+        const freshResult = await spotifyAxios(
+          'foo',
+          method,
+          'token',
+          {},
+          cache,
+        );
+        expect(axiosMock).toBeCalledTimes(1);
+        expect(axiosMock).toBeCalledWith({
+          baseURL: BASE_API_URL,
+          headers: {
+            Authorization: 'Bearer token',
+            'Content-Type': 'application/json',
+          },
+          paramsSerializer,
+          url: 'foo',
+          method: method,
+        });
+        expect(cacheData).toMatchObject({});
+        const secondFreshResult: any = await spotifyAxios(
+          'foo',
+          method,
+          'token',
+          {},
+          cache,
+        );
+        expect(axiosMock).toBeCalledTimes(2);
+        expect(cacheData).toMatchObject({});
+        expect(freshResult).toMatchObject({
+          id: 123,
+        });
+        expect(secondFreshResult).toMatchObject({
+          id: 123,
+        });
+        expect(secondFreshResult.fromCache).toBeUndefined();
+      },
     );
   });
 });

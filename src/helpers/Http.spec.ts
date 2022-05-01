@@ -22,7 +22,13 @@ describe('Http', () => {
       const http = new Http('token');
       http.get('foo');
       expect(spotifyAxiosMock).toBeCalledTimes(1);
-      expect(spotifyAxiosMock).toBeCalledWith('foo', 'GET', 'token', undefined);
+      expect(spotifyAxiosMock).toBeCalledWith(
+        'foo',
+        'GET',
+        'token',
+        undefined,
+        undefined,
+      );
     });
 
     it(`should correctly call spotifyAxios for GET requests (with config)`, () => {
@@ -31,9 +37,15 @@ describe('Http', () => {
         baseURL: 'bar',
       });
       expect(spotifyAxiosMock).toBeCalledTimes(1);
-      expect(spotifyAxiosMock).toBeCalledWith('foo', 'GET', 'token', {
-        baseURL: 'bar',
-      });
+      expect(spotifyAxiosMock).toBeCalledWith(
+        'foo',
+        'GET',
+        'token',
+        {
+          baseURL: 'bar',
+        },
+        undefined,
+      );
     });
   });
 

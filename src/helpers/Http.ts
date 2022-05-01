@@ -1,9 +1,12 @@
 import { spotifyAxios, SpotifyAxiosConfig } from './spotifyAxios';
+import { Cache } from './Cache';
 
 export class Http {
   private accessToken: string;
+  private readonly cache?: Cache;
 
-  constructor(accessToken: string) {
+  constructor(accessToken: string, cache?: Cache) {
+    this.cache = cache;
     this.accessToken = accessToken;
   }
 
@@ -16,7 +19,7 @@ export class Http {
   }
 
   get<T>(url: string, config?: SpotifyAxiosConfig) {
-    return spotifyAxios<T>(url, 'GET', this.accessToken, config);
+    return spotifyAxios<T>(url, 'GET', this.accessToken, config, this.cache);
   }
 
   post<T>(url: string, config?: SpotifyAxiosConfig) {
