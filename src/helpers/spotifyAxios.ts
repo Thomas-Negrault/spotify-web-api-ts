@@ -7,6 +7,10 @@ import { generateCacheKeyForRequest } from './generateCacheKeyForRequest';
 
 export type SpotifyAxiosConfig = AxiosRequestConfig & { contentType?: string };
 
+async function delay(time: number) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 export async function spotifyAxios<T>(
   url: string,
   method: Method,
@@ -58,7 +62,16 @@ export async function spotifyAxios<T>(
     if (!axios.isAxiosError(error)) {
       throw error;
     }
+    if (
+      error.response?.status === 429 &&
+      error.response?.headers['retry-after']
+    ) {
+      await delay(
+        Number.parseInt(error.response?.headers['retry-after'], 10) * 1000,
+      );
 
+      return spotifyAxios<T>(url, method, accessToken, config, cache);
+    }
     if (error?.response?.data?.error?.message) {
       throw new Error(`${error.message}: ${error.response.data.error.message}`);
     }
